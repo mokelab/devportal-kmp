@@ -27,7 +27,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.compose.runtime)
-            api(libs.androidx.navigation3.runtime)
+            api(libs.navigation3.ui)
         }
     }
 }
