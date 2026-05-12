@@ -9,6 +9,7 @@ import com.mokelab.devportal.kmp.api.DevPortalNavigator
 import org.koin.mp.KoinPlatform
 import platform.UIKit.UIViewController
 
+@Suppress("FunctionName")
 fun DevPortalViewController(): UIViewController {
     val koin = KoinPlatform.getKoin()
     val navigator = koin.get<DevPortalNavigator>()

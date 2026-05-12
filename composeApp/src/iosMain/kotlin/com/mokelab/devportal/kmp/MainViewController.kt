@@ -8,4 +8,5 @@ fun initKoin() {
     }
 }
 
+@Suppress("FunctionName")
 fun MainViewController() = DevPortalViewController()
