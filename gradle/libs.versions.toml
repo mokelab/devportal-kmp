@@ -1,4 +1,5 @@
 [versions]
+devportal = "0.1.0"
 agp = "8.11.2"
 android-compileSdk = "36"
 android-minSdk = "24"
@@ -40,6 +41,9 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 lifecycle-viewmodel-navigation3 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "androidx-lifecycle" }
+
+mokelab-devportal-kmp-api = { group = "com.mokelab.devportal.kmp", name = "api", version.ref = "devportal" }
+mokelab-devportal-kmp-devportal = { group = "com.mokelab.devportal.kmp", name = "devportal", version.ref = "devportal" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

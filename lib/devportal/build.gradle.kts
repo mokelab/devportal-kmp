@@ -5,13 +5,18 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    id("maven-publish")
 }
+
+group = "com.mokelab.devportal.kmp"
+version = libs.versions.devportal.get()
 
 kotlin {
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
+        publishLibraryVariants("release")
     }
 
     listOf(
@@ -54,5 +59,14 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "localRepo"
+            url = uri("${rootProject.rootDir.absolutePath}/docs/repo")
+        }
     }
 }
