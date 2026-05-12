@@ -43,7 +43,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.mokelab.devportal.kmp"
+    namespace = "com.mokelab.devportal.kmp.devportal"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
