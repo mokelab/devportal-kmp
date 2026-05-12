@@ -1,35 +1,153 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# DevPortal KMP
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+This library provides a module-style UI for Android and iOS app developers. It is useful for adding
+development tools to your app in development builds.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Built with Kotlin Multiplatform and Compose Multiplatform, targeting Android and iOS.
 
-### Build and Run Android Application
+# Quick Start
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+Add maven repository.
 
-### Build and Run iOS Application
+```kotlin
+repositories {
+    maven {
+        url = uri("https://mokelab.github.io/devportal-kmp/repo")
+    }
+}
+```
 
-To build and run the development version of the iOS app, use the run configuration from the run widget
-in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+or copy `docs/repo` directory to your project and add maven repository.
 
----
+```kotlin
+repositories {
+    maven {
+        url = uri("path/to/repo")
+    }
+}
+```
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+Add dependency. This library uses Koin for dependency injection.
+
+```kotlin
+dependencies {
+    debugImplementation("com.mokelab.devportal.kmp:devportal:$version")
+}
+```
+
+### Android
+
+Add Activity to your `AndroidManifest.xml`. It is recommended to add `src/debug/AndroidManifest.xml`
+and add this Activity only for debug build.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application tools:ignore="MissingApplicationIcon">
+        <activity android:name="com.mokelab.devportal.kmp.DevPortalActivity"
+            android:exported="true" android:label="DevPortal" android:taskAffinity=".devportal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+```
+
+Set `android:exported="true"` and `android:taskAffinity=".devportal"` to run DevPortalActivity in a
+separate task. It is useful to keep DevPortalActivity alive when the main app is running.
+
+Start Koin in your Application class and include `devPortalModule`.
+
+```kotlin
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@MyApplication)
+            modules(devPortalModule, appKoinModule)
+        }
+    }
+}
+```
+
+### iOS
+
+Call `DevPortalViewController()` from Swift to present the DevPortal UI.
+
+```swift
+import LibDevportal
+
+let vc = DevPortalViewController()
+present(vc, animated: true)
+```
+
+Start Koin before presenting the view controller.
+
+```kotlin
+// In your KMP shared code (e.g. AppKoinModule.kt)
+fun initKoin() {
+    startKoin {
+        modules(devPortalModule, appKoinModule)
+    }
+}
+```
+
+# Usage
+
+`devportal` module requires one or more `DevPortalFeature` to show in the UI.
+
+You can create your own feature by implementing the `DevPortalFeature` interface and registering it
+with Koin.
+
+# How to add your own DevPortalFeature
+
+Add a KMP library module (or shared module) to your project.
+
+Add `com.mokelab.devportal.kmp:api:$version` to dependencies.
+
+```kotlin
+dependencies {
+    implementation("com.mokelab.devportal.kmp:api:$version")
+}
+```
+
+Implement `DevPortalFeature`.
+
+```kotlin
+object MyRoute
+
+class MyFeature : DevPortalFeature {
+    override val name: String = "My Feature"
+    override val root: Any = MyRoute
+    override val installer: EntryProviderScope<Any>.() -> Unit = {
+        entry<MyRoute> {
+            MyScreen()
+        }
+    }
+}
+```
+
+Then implement `MyScreen` as a Composable function.
+
+Register the feature with Koin.
+
+```kotlin
+val appKoinModule = module {
+    single<DevPortalFeature> { MyFeature() }
+}
+```
+
+Koin collects all `DevPortalFeature` instances automatically, so you don't need any additional wiring
+after registering the module.
+
+If your current work is done and you don't need to show this feature in DevPortal, you can remove
+its Koin module. The feature will automatically disappear from DevPortal.
+
+# License
+
+Apache License Version 2.0

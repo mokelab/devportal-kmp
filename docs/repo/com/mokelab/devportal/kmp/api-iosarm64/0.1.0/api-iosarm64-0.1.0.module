@@ -1,0 +1,176 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../api/0.1.0/api-0.1.0.module",
+    "group": "com.mokelab.devportal.kmp",
+    "module": "api",
+    "version": "0.1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.3"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.androidx.navigation3",
+          "module": "navigation3-ui",
+          "version": {
+            "requires": "1.0.0-alpha05"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.10.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "api-iosArm64Main-0.1.0.klib",
+          "url": "api-iosarm64-0.1.0.klib",
+          "size": 7071,
+          "sha512": "2475377bc97183f9d664f0e4993e46ccee19e3d63c3f913148d35ead40ea5278a12907b94c5bad9af3103c8accdffcdfe99a24abb88ccc52be0e863ffdc63e5f",
+          "sha256": "1056977c701b1f2d7a5404c45079907cbc3f426eb19c5cba7a5e8d2842fb4d60",
+          "sha1": "242593a19d2859c1f23b66f323afeb3f927656f8",
+          "md5": "ac8600cfb09d8bfc77dbc7829c5f49c9"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "api-iosarm64-0.1.0-sources.jar",
+          "url": "api-iosarm64-0.1.0-sources.jar",
+          "size": 2568,
+          "sha512": "94617616ed8f5e2a04577db27cd73f5e599634817ce4bb7c6e3bc49984bf2dc318ee4db79175ee2f9f17790e8c87d2e973dc5a322602fb3d1c901b7d8f0a8354",
+          "sha256": "1eb978ca6a241632b16867632eae20ad53b0e9902735581723ba74691e35bd9c",
+          "sha1": "55f4de06d470ff9c55e59156c6f9b82fc76a18e3",
+          "md5": "ae5ca4b97a9d945067190576e18eadf6"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64ResourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.libraryelements": "kotlin-multiplatformresources",
+        "org.gradle.usage": "kotlin-multiplatformresources",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.androidx.navigation3",
+          "module": "navigation3-ui",
+          "version": {
+            "requires": "1.0.0-alpha05"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.10.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "api-0.1.0.kotlin_resources.zip",
+          "url": "api-iosarm64-0.1.0-kotlin_resources.kotlin_resources.zip",
+          "size": 346,
+          "sha512": "4953aa58e82301de4b9259f0dbaaa340cc49afa8eed0397951e17853105727bfc44a92ef5f412eed0a6c103c2d30f746e7a50ca6ba52d46f5327261f2a71ccc6",
+          "sha256": "10ed92f244e3323631fc451c6426bad4293c9fcfc381ab20d98b06cd360089ab",
+          "sha1": "731d87c4a73c8b61f2afa4852c1880a4818694d0",
+          "md5": "c912e1f19484a6fedc8216b8a25cae50"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.androidx.navigation3",
+          "module": "navigation3-ui",
+          "version": {
+            "requires": "1.0.0-alpha05"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.21"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.runtime",
+          "module": "runtime",
+          "version": {
+            "requires": "1.10.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "api-iosarm64-0.1.0-metadata.jar",
+          "url": "api-iosarm64-0.1.0-metadata.jar",
+          "size": 261,
+          "sha512": "f2d5dda8bf62c081c24218238021e20d2d2b4aac33daa9b18726a8ab1ca5f805489838a2724a4c16b5d6bf41375afa443c7a6e43c9d15b7072a3631950dbfb08",
+          "sha256": "65b905648f504760451b7131097eaf73173f84a82b8da24af77f78fd7e87bbfe",
+          "sha1": "1d3959fef25f5fe8feefa6aa9e0ad32b9894b31f",
+          "md5": "5b72676536225494192142b9463251e0"
+        }
+      ]
+    }
+  ]
+}
