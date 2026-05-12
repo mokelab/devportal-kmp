@@ -12,7 +12,7 @@ Add maven repository.
 ```kotlin
 repositories {
     maven {
-        url = uri("https://mokelab.github.io/DevPoralKMP/repo")
+        url = uri("https://mokelab.github.io/devportal-kmp/repo")
     }
 }
 ```
